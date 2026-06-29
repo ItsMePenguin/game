@@ -6,12 +6,61 @@
 
 <body>
 
-<canvas id="gcanvas" width="200" hight="100"></canvas>  
+<canvas id="gcanvas" width="1000" height="1000"></canvas>  
 
 <script>
-var gcanvas=document.getElementById("gcanvas").getContext("2d");
-gcanvas.fillStyle="red";
-gcanvas.fillrectangle(0,0,10,10);
+var gcanvas=document.getElementById("gcanvas");
+var ctx= gcanvas.getContext("2d");
+
+var px =0;
+var py =0;
+
+var keypress= []
+
+var speed= 5
+
+function update(){
+  ctx.clearRect(0,0,gcanvas.width,gcanvas.height);
+
+  ctx.fillStyle="red";
+  ctx.fillRect(px,py,10,10);
+  
+  if (keypress.includes("w")){
+  py-=speed
+  }
+  if (keypress.includes("s")){
+  py+=speed
+  }
+  
+  if (keypress.includes("d")){
+  px+=speed
+  }
+  
+  if (keypress.includes("a")){
+  px-=speed
+  }
+  
+ keypress=[]
+}
+
+function onkeypress(event){
+if (event.key == "w" || event.key == "W"){
+keypress.push("w");}
+
+if (event.key== "s" || event.key== "S"){
+keypress.push("s");}
+
+if (event.key== "d" || event.key== "D"){
+keypress.push("d");}
+
+if (event.key== "a" || event.key== "A"){
+keypress.push("a");}
+}
+
+document.body.addEventListener("keydown",onkeypress);
+
+setInterval(update,1000/60)
+
 </script>
   
 </body>
