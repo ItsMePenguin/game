@@ -27,12 +27,16 @@ gcanvas.width=innerWidth-10
 function update(){
   ctx.clearRect(0,0,gcanvas.width,gcanvas.height);
 
-  ctx.strokeStyle="black";
-  ctx.strokeRect(px,py,10,10);
+  ctx.fillStyle="black"
+  ctx.fillText("Defend the center rectangle from the evil zombies!",0,0)
   
   ctx.strokeStyle="red"
-  ctx.rect(gcanvas.width/3,gcanvas.height/3,150,150)
+  ctx.rect(gcanvas.width/3,gcanvas.height/3,gcanvas.width/3,gcanvas.height/3)
   ctx.stroke()
+
+
+  ctx.strokeStyle="black";
+  ctx.strokeRect(px,py,10,10);
   
   if (keypress.includes("w")){
   py-=speed
@@ -53,18 +57,7 @@ function update(){
 }
 
 function onkeypress(event){
-if (event.key == "w" || event.key == "W"){
-keypress.push("w");}
-
-if (event.key== "s" || event.key== "S"){
-keypress.push("s");}
-
-if (event.key== "d" || event.key== "D"){
-keypress.push("d");}
-
-if (event.key== "a" || event.key== "A"){
-keypress.push("a");}
-}
+if (!(keypress.includes(event.key.toLowerCase()))){keypress.push(event.key.toLowerCase());}}
 
 document.body.addEventListener("keydown",onkeypress);
 
